@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>情報セキュリティ基本方針 | 株式会社SAZANKA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111;
+      --gold: #c9a84c;
+      --text: #e8e4dc;
+      --muted: #888;
+      --faint: #555;
+      --border: rgba(201,168,76,0.2);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      line-height: 2;
+      letter-spacing: 0.05em;
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: rgba(10,10,10,0.96);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo { font-family: 'Josefin Sans', sans-serif; font-size: 1.1rem; letter-spacing: 0.3em; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+    main { max-width: 760px; margin: 0 auto; padding: 120px 2rem 100px; }
+    .page-header { text-align: center; margin-bottom: 4rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+    .page-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.2rem; display: block; }
+    .page-title { font-size: clamp(1.3rem, 4vw, 1.9rem); font-weight: 400; color: var(--text); letter-spacing: 0.12em; }
+    .policy-intro { font-size: 0.9rem; color: #bbb; line-height: 2.1; margin-bottom: 3rem; padding: 2rem; border: 1px solid var(--border); background: var(--surface); }
+    .policy-item { margin-bottom: 2.5rem; }
+    .policy-item h2 { font-family: 'Josefin Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.8rem; }
+    .policy-item h2 .num { font-size: 0.65rem; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); padding: 0.15rem 0.5rem; letter-spacing: 0.1em; }
+    .policy-item p { font-size: 0.88rem; color: #bbb; line-height: 2.1; }
+    .policy-sign { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--border); text-align: right; }
+    .policy-sign p { font-size: 0.85rem; color: var(--muted); line-height: 2.2; }
+    .policy-sign strong { color: var(--text); font-weight: 400; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 0.7rem; color: var(--faint); font-family: 'Josefin Sans', sans-serif; letter-spacing: 0.15em; }
+    @media (max-width: 600px) { main { padding: 100px 1.2rem 60px; } nav { padding: 0 1.2rem; } .policy-intro { padding: 1.5rem; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">SAZ<span>A</span>NKA</a>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      トップページへ戻る
+    </a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <span class="page-label">Security Policy</span>
+      <h1 class="page-title">情報セキュリティ基本方針</h1>
+    </div>
+
+    <div class="policy-intro">
+      株式会社SAZANKA（以下「当社」）は、内装工事や業務用エアコン設備工事を通じてお客様や取引先の皆様から多くの情報をお預かりしております。これらの情報資産を事故や災害、犯罪などの脅威から保護することが、当社の社会的責務であると考え、以下の方針に基づき全社で情報セキュリティに取り組みます。
+    </div>
+
+    <div class="policy-item">
+      <h2><span class="num">01</span>経営者の責任</h2>
+      <p>当社は、経営者主導で組織的かつ継続的に情報セキュリティの改善・向上に努めます。</p>
+    </div>
+
+    <div class="policy-item">
+      <h2><span class="num">02</span>社内体制の整備</h2>
+      <p>当社は、情報セキュリティの維持・改善のために組織体制を整備し、情報セキュリティ対策を社内の正式な規則として定めます。</p>
+    </div>
+
+    <div class="policy-item">
+      <h2><span class="num">03</span>従業員の取組み</h2>
+      <p>当社の従業員は、情報セキュリティのために必要とされる知識、技術を習得し、情報セキュリティへの取り組みを確かなものにします。</p>
+    </div>
+
+    <div class="policy-item">
+      <h2><span class="num">04</span>法令及び契約上の要求事項の遵守</h2>
+      <p>当社は、情報セキュリティに関わる法令、規制、規範、契約上の義務を遵守するとともに、お客様の期待に応えます。</p>
+    </div>
+
+    <div class="policy-item">
+      <h2><span class="num">05</span>違反及び事故への対応</h2>
+      <p>当社は、情報セキュリティに関わる法令違反、契約違反及び事故が発生した場合には適切に対処し、再発防止に努めます。</p>
+    </div>
+
+    <div class="policy-sign">
+      <p>
+        制定日：2026年4月27日<br>
+        <strong>株式会社SAZANKA</strong><br>
+        代表取締役　<strong>西脇 大空</strong>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 KABUSHIKI GAISHA SAZANKA. ALL RIGHTS RESERVED.
+  </footer>
+</body>
+</html>
