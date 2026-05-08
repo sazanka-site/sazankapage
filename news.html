@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新着情報 | 株式会社SAZANKA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --text: #e8e4dc;
+      --muted: #888;
+      --faint: #555;
+      --border: rgba(201,168,76,0.2);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+    }
+
+    /* ナビ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: rgba(10,10,10,0.96);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo { font-family: 'Josefin Sans', sans-serif; font-size: 1.1rem; letter-spacing: 0.3em; color: var(--text); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-back { font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold); }
+
+    /* メイン */
+    main { max-width: 860px; margin: 0 auto; padding: 120px 2rem 100px; }
+
+    /* ヘッダー */
+    .page-header { text-align: center; margin-bottom: 4rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+    .page-label { font-family: 'Josefin Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.2rem; display: block; }
+    .page-title { font-size: clamp(1.3rem, 4vw, 1.9rem); font-weight: 400; color: var(--text); letter-spacing: 0.12em; }
+
+    /* フィルター */
+    .filter-bar {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    /* ニュースリスト */
+    .news-list { display: flex; flex-direction: column; gap: 0; }
+    .news-item {
+      display: grid;
+      grid-template-columns: 120px 90px 1fr;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .news-item:first-child { border-top: 1px solid rgba(201,168,76,0.1); }
+    .news-item:hover { background: rgba(201,168,76,0.04); padding-left: 0.5rem; }
+    .news-date {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .news-cat {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      padding: 0.25rem 0.7rem;
+      border: 1px solid;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .news-cat.cat-notice   { color: var(--gold); border-color: rgba(201,168,76,0.4); }
+    .news-cat.cat-works    { color: #7cb9e8; border-color: rgba(124,185,232,0.4); }
+    .news-cat.cat-blog     { color: #90c88a; border-color: rgba(144,200,138,0.4); }
+    .news-title {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .news-item:hover .news-title { color: var(--gold-light); }
+
+    /* 空の状態 */
+    .news-empty {
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      display: none;
+    }
+
+    /* フッター */
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 0.7rem; color: var(--faint); font-family: 'Josefin Sans', sans-serif; letter-spacing: 0.15em; }
+
+    @media (max-width: 600px) {
+      main { padding: 100px 1.2rem 60px; }
+      nav { padding: 0 1.2rem; }
+      .news-item { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.2rem 0; }
+      .news-item:hover { padding-left: 0; }
+      .news-date { font-size: 0.68rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">SAZ<span>A</span>NKA</a>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      トップページへ戻る
+    </a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <span class="page-label">News &amp; Updates</span>
+      <h1 class="page-title">新着情報</h1>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="notice">お知らせ</button>
+      <button class="filter-btn" data-filter="works">施工実績</button>
+      <button class="filter-btn" data-filter="blog">ブログ</button>
+    </div>
+
+    <div class="news-list" id="newsList">
+      <!-- ============================================================
+           ★ ここから下に記事を追加してください ★
+
+           コピー用テンプレート（1記事分）:
+
+           <a href="リンク先URL（なければ # でOK）" class="news-item" data-cat="カテゴリ">
+             <span class="news-date">YYYY.MM.DD</span>
+             <span class="news-cat cat-カテゴリ">カテゴリ名</span>
+             <span class="news-title">タイトルを入力してください</span>
+           </a>
+
+           カテゴリの種類:
+             お知らせ  → data-cat="notice"  class="news-cat cat-notice"
+             施工実績  → data-cat="works"   class="news-cat cat-works"
+             ブログ    → data-cat="blog"    class="news-cat cat-blog"
+
+           例:
+           <a href="#" class="news-item" data-cat="notice">
+             <span class="news-date">2026.04.27</span>
+             <span class="news-cat cat-notice">お知らせ</span>
+             <span class="news-title">情報セキュリティ基本方針を制定しました</span>
+           </a>
+           ============================================================ -->
+
+      <a href="security_policy.html" target="_blank" class="news-item" data-cat="notice">
+        <span class="news-date">2026.04.27</span>
+        <span class="news-cat cat-notice">お知らせ</span>
+        <span class="news-title">情報セキュリティ基本方針を制定しました</span>
+      </a>
+
+      <a href="index.html#blog" class="news-item" data-cat="blog">
+        <span class="news-date">2025.03.23</span>
+        <span class="news-cat cat-blog">ブログ</span>
+        <span class="news-title">ホームページをリニューアルしました！</span>
+      </a>
+
+    </div>
+
+    <p class="news-empty" id="newsEmpty">該当する記事がありません。</p>
+  </main>
+
+  <footer>
+    &copy; 2025 KABUSHIKI GAISHA SAZANKA. ALL RIGHTS RESERVED.
+  </footer>
+
+  <script>
+    // フィルター機能
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const newsItems  = document.querySelectorAll('.news-item');
+    const newsEmpty  = document.getElementById('newsEmpty');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+        let visible = 0;
+
+        newsItems.forEach(item => {
+          const cat = item.getAttribute('data-cat');
+          const show = filter === 'all' || cat === filter;
+          item.style.display = show ? 'grid' : 'none';
+          if (show) visible++;
+        });
+
+        newsEmpty.style.display = visible === 0 ? 'block' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>
